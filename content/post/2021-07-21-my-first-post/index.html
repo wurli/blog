@@ -1,0 +1,22 @@
+---
+title: My First Post
+author: Jacob Scott
+date: '2021-07-21'
+slug: my-first-post
+categories:
+  - R
+tags:
+  - plot
+  - R Markdown
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>This is my first post. Here’s some code:</p>
+<pre class="r"><code>library(ggplot2)
+
+ggplot(mtcars, aes(x = mpg, y = qsec)) +
+  geom_point() +
+  ggtitle(&quot;MTCars mpg / qsec&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
