@@ -1,6 +1,8 @@
 ---
-date: "2016-05-05T21:48:51-07:00"
+menu: main
 title: About
+type: about
+weight: 10
 ---
 
-This is a "hello world" example website for the [**blogdown**](https://github.com/rstudio/blogdown) package. The theme was forked from [@jrutheiser/hugo-lithium-theme](https://github.com/jrutheiser/hugo-lithium-theme) and modified by [Yihui Xie](https://github.com/yihui/hugo-lithium).
+Being a cool guy is easy if you live under a big cool rock

@@ -1,43 +1,82 @@
-baseurl: /
+baseurl: https://zhaohuabing.com
+title: Jacob Scott
+theme: hugo-theme-cleanwhite
 languageCode: en-us
-title: A Hugo website
-theme: hugo-lithium
-googleAnalytics: ''
 disqusShortname: ''
-ignoreFiles:
-  - \.Rmd$
-  - \.Rmarkdown$
-  - _cache$
-  - \.knit\.md$
-  - \.utf8\.md$
-permalinks:
-  post: /:year/:month/:day/:slug/
-menu:
-  main:
-    - name: About
-      url: /about/
-    - name: GitHub
-      url: https://github.com/wurli
-    - name: Twitter
-      url: https://twitter.com/_wurli
+googleAnalytics: ''
+preserveTaxonomyNames: yes
+paginate: 5
+hasCJKLanguage: yes
+outputs:
+  home:
+    - HTML
+    - RSS
+    - Algolia
 params:
-  MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
-  MathJaxVersion: 2.7.5
-  description: A website built through Hugo and blogdown.
-  favicon: favicon.ico
-  highlightjsCDN: //cdnjs.cloudflare.com/ajax/libs
-  highlightjsLang:
-    - r
-    - yaml
-  highlightjsTheme: github
-  highlightjsVersion: 9.12.0
-  logo:
-    alt: Logo
-    height: 50
-    url: logo.png
-    width: 50
+  SEOTitle: Data Visualisation | R | Julia
+  about_me: yes
+  addtional_menus:
+    - href: /top/about/
+      title: ABOUT
+  algolia:
+    params:
+      - categories
+      - tags
+    vars:
+      - title
+      - summary
+      - date
+      - publishdate
+      - expirydate
+      - permalink
+  algolia_apiKey: ''
+  algolia_appId: ''
+  algolia_indexName: ''
+  algolia_search: yes
+  ba_track_id: ''
+  bookmark_link:
+    - href: https://martinfowler.com
+      title: Martin Fowler
+    - href: http://www.servicemesher.com
+      title: ServiceMesher
+    - href: https://pxhere.com
+      title: Pxhere
+    - href: https://unsplash.com
+      title: unsplash
+  bookmarks: no
+  description: Data Visualisation | R | Julia
+  disqus_proxy: ''
+  disqus_site: ''
+  featured_condition_size: 1
+  featured_tags: yes
+  friends: no
+  header_image: img/home-bg-jeep.jpg
+  image_404: img/404-bg.jpg
+  keyword: ''
+  leancloud_app_id: ''
+  leancloud_app_key: ''
+  omit_categories: no
+  page_view_conter: no
+  reward: yes
+  sidebar_about_description: Data Scientist - Musician - Dog Enthusiast
+  sidebar_avatar: img/dp.jpg
+  slogan: Data Visualisation | R | Julia
+  social:
+    email: jscott2718@gmail.com
+    github: https://github.com/wurli
+    twitter: https://twitter.com/_wurli
+    rss: no
+    stackoverflow: https://stackoverflow.com/users/5633063/bluvoxe
+  title_404: Page not found :(
+outputFormats:
+  Algolia:
+    baseName: algolia
+    isPlainText: yes
+    mediaType: application/json
+    notAlternative: yes
 markup:
-  defaultMarkdownHandler: goldmark
-  goldmark:
-    renderer:
-      unsafe: yes
+  highlight:
+    style: dracula
+  tableOfContents:
+    endLevel: 2
+    startLevel: 1
