@@ -1,0 +1,19 @@
+---
+title: Interactive Charts
+author: Jacob Scott
+date: '2021-07-23'
+slug: []
+categories: []
+tags: []
+subtitle: ''
+description: ''
+image: ''
+---
+```{r}
+library(echarts4r)
+
+mtcars %>% 
+    e_chart(mpg) %>% 
+    e_scatter(qsec, symbol_size = 10)
+```
+
