@@ -1,0 +1,18 @@
+---
+title: "Jacob Scott"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/_wurli
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/jacob-scott-961a42248/ 
+    - icon: github
+      text: Github
+      href: https://github.com/wurli
+---
+
+I am a data scientist working in the UK public sector, mainly writing R code. This is where I put stuff I think is worth writing down but doesn't fit on twitter.
