@@ -16,8 +16,9 @@ website:
         
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: 
+      - litera.scss
+    css: litera.css
     toc: true
     code-copy: true
   
