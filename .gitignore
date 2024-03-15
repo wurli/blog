@@ -1,3 +1,6 @@
+_site/
+_freeze/
+
 # History files
 .Rhistory
 .Rapp.history
