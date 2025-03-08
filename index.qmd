@@ -1,0 +1,23 @@
+---
+title: "Hi 👋"
+image: profile.jpg
+about:
+  template: solana
+  links:
+    - icon: mastodon
+      text: Mastodon
+      href: https://fosstodon.org/home
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/jacob-scott-961a42248/
+    - icon: github
+      text: Github
+      href: https://github.com/wurli
+---
+
+I'm Jacob, R/functional programming enthusiast by night, data scientist/engineer
+by day. This is where I write about R, Neovim, Rust, and probably some other
+stuff.
+
+For humans only: `jscott2718<at>gmail<dot>com`
+
