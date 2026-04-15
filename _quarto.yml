@@ -13,6 +13,7 @@ website:
 format:
   html:
     theme: litera
+    monofont: "CommitMono"
     css: styles.css
 
 execute:

@@ -1,1 +1,49 @@
-/* css styles */
+/* Font Face Declarations */
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-400-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-700-Regular.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-400-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-700-Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Apply CommitMono to all text */
+body,
+html,
+p,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+a,
+button,
+input,
+textarea,
+select {
+  font-family: 'CommitMono', monospace !important;
+}
