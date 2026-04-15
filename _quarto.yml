@@ -7,16 +7,15 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/wurli
+      - icon: mastodon
+        href: https://fosstodon.org/@_wurli
+
 format:
   html:
-    theme: litera
+    theme: solar
     monofont: "CommitMono"
     css: styles.css
 
 execute:
   freeze: auto
-
-
