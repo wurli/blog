@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Jacob Scott"
+  search: false
   navbar:
     right:
       - about.qmd
