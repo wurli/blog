@@ -72,21 +72,21 @@ figcaption {
   display: none;
 }
 
-/* Remove table borders */
+/* Posts listing table: transparent background with horizontal rules */
 .quarto-listing-table.table {
-  border: none !important;
-}
-
-.quarto-listing-table.table tbody {
+  --bs-table-bg: transparent !important;
+  --bs-table-accent-bg: transparent !important;
   border: none !important;
 }
 
 .quarto-listing-table.table tbody tr {
-  border: none !important;
+  border-bottom: 1px solid var(--bs-secondary) !important;
 }
 
 .quarto-listing-table.table tbody tr td {
   border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* Add invisible dot space to all sidebar navigation items */
@@ -214,9 +214,15 @@ body.fullcontent #quarto-document-content a:hover::after {
   opacity: 1;
 }
 
-/* Disable link expansion in listings */
+/* Disable link expansion in listings and headings */
 .quarto-listing a:hover::before,
-.quarto-listing a:hover::after {
+.quarto-listing a:hover::after,
+h1 a:hover::before, h1 a:hover::after,
+h2 a:hover::before, h2 a:hover::after,
+h3 a:hover::before, h3 a:hover::after,
+h4 a:hover::before, h4 a:hover::after,
+h5 a:hover::before, h5 a:hover::after,
+h6 a:hover::before, h6 a:hover::after {
   content: none !important;
 }
 
