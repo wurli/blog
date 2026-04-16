@@ -8,22 +8,17 @@ website:
   sidebar:
     style: "floating"
     contents:
+      - text: "About"
+        href: index.qmd
       - text: "Posts"
-        icon: pen
         href: posts.qmd
-      - text: "GitHub"
-        icon: github
-        href: https://github.com/wurli
-      - text: "Mastodon"
-        icon: mastodon
-        href: https://fosstodon.org/@_wurli
 
-  # page-footer:
-  #   right:
-  #     - icon: github
-  #       href: https://github.com/wurli
-  #     - icon: mastodon
-  #       href: https://fosstodon.org/@_wurli
+  page-footer:
+    right:
+      - icon: github
+        href: https://github.com/wurli
+      - icon: mastodon
+        href: https://fosstodon.org/@_wurli
 
 format:
   html:
@@ -31,6 +26,7 @@ format:
     monofont: "CommitMono"
     css: styles.css
     title-block-banner: false
+    fontsize: 0.98em
     # toc: true
 
 execute:

@@ -6,8 +6,7 @@ about:
 ---
 
 I'm Jacob, R/functional programming enthusiast by night, data scientist/engineer
-by day. This is where I write about R, Neovim, Rust, and probably some other
-stuff.
+by day. This is where I write about stuff.
 
 For humans only: `jscott2718<at>gmail<dot>com`
 
