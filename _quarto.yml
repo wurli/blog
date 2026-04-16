@@ -23,6 +23,7 @@ website:
 format:
   html:
     theme: solar
+    mainfont: "CommitMono"
     monofont: "CommitMono"
     css: styles.css
     title-block-banner: false
