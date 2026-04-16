@@ -8,7 +8,11 @@ listing:
   sort-ui: false
   filter-ui: false
   fields: ["title", "date"]
-page-layout: full
+
+# Makes the whole blog feel a bit more cohesive since the differnt page
+# component no longer move when navigating between, e.g. the home page and 
+# posts page
+page-layout: article
 title-block-banner: false
 ---
 

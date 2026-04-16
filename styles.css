@@ -47,6 +47,35 @@ figcaption {
   text-align: right;
 }
 
+/* Display title and date side-by-side */
+.quarto-post {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 1em !important;
+}
+
+.quarto-post .body {
+  flex: 1;
+}
+
+.quarto-post .metadata {
+  white-space: nowrap;
+}
+
+.quarto-post .listing-title {
+  margin: 0 !important;
+}
+
+/* Match date styling to h3 title */
+.quarto-post .listing-date {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: inherit !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
 /* ===== Markdown Syntax Visualization (in document content only) ===== */
 #quarto-document-content ul li::marker {
   content: "* ";
@@ -97,12 +126,26 @@ figcaption {
 #quarto-document-content h6:not(.listing-title):not(.quarto-listing-category-title)::before { content: "###### "; }
 
 /* ===== Link Behavior ===== */
+body.fullcontent #quarto-document-content a::before,
+body.fullcontent #quarto-document-content a::after {
+  opacity: 0;
+  transition: opacity 0.1s ease-in 0.3s;
+}
+
 body.fullcontent #quarto-document-content a:hover::before {
   content: "[";
+  opacity: 1;
 }
 
 body.fullcontent #quarto-document-content a:hover::after {
   content: "](" attr(href) ")";
+  opacity: 1;
+}
+
+/* Disable link expansion in listings */
+.quarto-listing a:hover::before,
+.quarto-listing a:hover::after {
+  content: none !important;
 }
 
 /* ===== Code Block Styling ===== */
