@@ -47,3 +47,29 @@ textarea,
 select {
   font-family: 'CommitMono', monospace !important;
 }
+
+/* Change list bullet to * (only in main content) */
+#quarto-document-content ul li::marker {
+  content: "* ";
+}
+
+/* Make italic text unsaturated pink */
+em,
+i {
+  color: #a87b8a;
+}
+
+/* Make bold text unsaturated pink */
+strong,
+b {
+  color: #a87b8a;
+}
+
+/* Show markdown link format on hover (only in post pages, not listing page) */
+body.fullcontent #quarto-document-content a:hover::before {
+  content: "[";
+}
+
+body.fullcontent #quarto-document-content a:hover::after {
+  content: "](" attr(href) ")";
+}

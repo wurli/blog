@@ -4,3 +4,31 @@ date: "2026-04-15"
 categories: [code, neovim, lua]
 ---
 
+With the release of Neovim 0.12 I decided to finally overhaul my statusline.
+For a long time this has been the one part of my config which has never felt
+great.
+
+For the uninitiated, this is what the default Neovim statusline looks like:
+
+![Default Neovim statusline](nvim-statusline-default.png)
+
+By default you get:
+
+*   The full path to the current buffer's file
+*   The cursor position in the file (`49,29`)
+*   The position of the **viewport relative to the length** of the file (`62%`)
+
+
+I've been a long time user *of* the _very_ _**popular**_
+[lualine](https://github.com/nvim-lualine/lualine.nvim), but creating a custom
+statusline that does exactly what I want 
+
+
+``` lua
+local a = b + c
+
+for i, x in pairs({a = 1, b = 2}) do
+    print(i)
+    print(x)
+end
+```

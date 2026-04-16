@@ -17,6 +17,8 @@ format:
     theme: solar
     monofont: "CommitMono"
     css: styles.css
+    filters:
+      - filters/show-markdown-syntax.lua
 
 execute:
   freeze: auto
