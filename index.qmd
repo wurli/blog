@@ -5,8 +5,8 @@ about:
   template: solana
 ---
 
-I'm Jacob, R/functional programming enthusiast by night, data scientist/engineer
-by day. This is where I write about stuff.
+I'm a software developer/data scientist/data engineer based in Cardiff, Wales.
+This is where I write about stuff.
 
 For humans only: `jscott2718<at>gmail<dot>com`
 
