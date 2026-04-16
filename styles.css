@@ -241,3 +241,17 @@ body.fullcontent #quarto-document-content a:hover::after {
 #quarto-document-content pre.sourceCode.python::before { content: "``` python"; }
 #quarto-document-content pre.sourceCode.javascript::before { content: "``` javascript"; }
 #quarto-document-content pre.sourceCode.bash::before { content: "``` bash"; }
+
+/* ===== Custom Footer ===== */
+.custom-footer {
+  margin-top: 3em;
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--bs-secondary);
+}
+
+.custom-footer a {
+  color: var(--bs-secondary);
+  margin-left: 0.6em;
+}

@@ -13,13 +13,6 @@ website:
       - text: "Posts"
         href: posts.qmd
 
-  page-footer:
-    right:
-      - icon: github
-        href: https://github.com/wurli
-      - icon: mastodon
-        href: https://fosstodon.org/@_wurli
-
 format:
   html:
     theme: solar
@@ -28,6 +21,7 @@ format:
     css: styles.css
     title-block-banner: false
     fontsize: 0.98em
+    include-after-body: _footer.html
     # toc: true
 
 execute:
