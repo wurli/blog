@@ -40,6 +40,24 @@
   font-family: 'CommitMono', monospace !important;
 }
 
+/* Add some padding to the top of the page */
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+/* Add 15% of screen height as top padding, clamped betweeen 4em and 10em */
+#quarto-content {
+  flex: 1 !important;
+  padding-top: clamp(4em, 15vh, 10em) !important;
+}
+
+.footer {
+  margin-top: auto !important;
+}
+
+/* Don't show a horizontal rule below h2 headings */
 h2 {
   border-bottom: none !important;
 }
