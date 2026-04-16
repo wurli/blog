@@ -8,13 +8,22 @@ website:
   sidebar:
     style: "floating"
     contents:
-      - about.qmd
+      - text: "Posts"
+        icon: pen
+        href: posts.qmd
       - text: "GitHub"
         icon: github
         href: https://github.com/wurli
       - text: "Mastodon"
         icon: mastodon
         href: https://fosstodon.org/@_wurli
+
+  # page-footer:
+  #   right:
+  #     - icon: github
+  #       href: https://github.com/wurli
+  #     - icon: mastodon
+  #       href: https://fosstodon.org/@_wurli
 
 format:
   html:
