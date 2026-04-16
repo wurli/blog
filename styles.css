@@ -5,6 +5,7 @@
   --delimiter-bold: "**";
   --delimiter-code: "`";
   --code-block-delimiter-color: var(--bs-secondary);
+  --highlight-color: #52d970;
 }
 
 /* ===== Font Declarations ===== */
@@ -47,33 +48,75 @@ figcaption {
   text-align: right;
 }
 
-/* Display title and date side-by-side */
-.quarto-post {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 1em !important;
+/* Hide table header row in listing */
+.quarto-listing table thead {
+  display: none;
 }
 
-.quarto-post .body {
-  flex: 1;
+/* Remove table borders */
+.quarto-listing-table.table {
+  border: none !important;
 }
 
-.quarto-post .metadata {
-  white-space: nowrap;
+.quarto-listing-table.table tbody {
+  border: none !important;
 }
 
-.quarto-post .listing-title {
-  margin: 0 !important;
+.quarto-listing-table.table tbody tr {
+  border: none !important;
 }
 
-/* Match date styling to h3 title */
-.quarto-post .listing-date {
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
-  color: inherit !important;
-  margin: 0 !important;
-  line-height: 1.2 !important;
+.quarto-listing-table.table tbody tr td {
+  border: none !important;
+}
+
+/* Add invisible dot space to all sidebar navigation items */
+.sidebar-navigation a::before {
+  content: "● ";
+  color: transparent;
+  margin-right: 0.25em;
+}
+
+/* Show dot and highlight text for active sidebar navigation item */
+.sidebar-navigation .active::before {
+  color: var(--highlight-color) !important;
+}
+
+.sidebar-navigation .active {
+  color: var(--highlight-color) !important;
+}
+
+.sidebar-navigation .active a {
+  color: var(--highlight-color) !important;
+}
+
+/* Show dot and highlight text for Posts link when on post pages */
+body.post-page .sidebar-navigation a[href*="posts.qmd"]::before,
+body.post-page .sidebar-navigation a[href*="posts.html"]::before {
+  color: var(--highlight-color) !important;
+}
+
+body.post-page .sidebar-navigation a[href*="posts.qmd"],
+body.post-page .sidebar-navigation a[href*="posts.html"] {
+  color: var(--highlight-color) !important;
+}
+
+/* Adjust sidebar title positioning */
+.sidebar-header {
+  padding-left: 0 !important;
+  padding-top: 3em !important;
+  margin-left: -3em !important;
+}
+
+.sidebar-title {
+  font-size: 1.5em !important;
+  font-weight: 700 !important;
+}
+
+/* Remove background bubble from inline code */
+code {
+  background-color: transparent !important;
+  padding: 0 !important;
 }
 
 /* ===== Markdown Syntax Visualization (in document content only) ===== */
