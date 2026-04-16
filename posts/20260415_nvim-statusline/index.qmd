@@ -7,7 +7,7 @@ The default Neovim statusline looks like this:
 
 ![Default Neovim statusline](nvim-statusline-default.png)
 
-A zero-config setup gets you:
+With zero config you get:
 
 *   The path to the current file (`~/Repos/dotfiles/.config/nvim/init.lua`)
 *   A modified status indicator (`[+]` to show there are unsaved changes)
@@ -15,13 +15,15 @@ A zero-config setup gets you:
 *   The position of the viewport (`62%`)
 *   As of 0.12 you also get other stuff sometimes, e.g. LSP progress messages
 
-For my money this is actually a great set of defaults. But, I spend hours every
-day in this editor, so a few tweaks will go a long way. I want my statusline to
-be:
+For my money this is actually a great set of defaults. But if you also spend
+hours every day in this editor, you may ask yourself, *does it spark joy*?
 
-*   Fancy but still understated
-*   Simple (no big plugin dependencies)
-*   Hackable, e.g. in case I want to see other information in different contexts
+I want a statusline which is:
 
-This turns out to be very achievable with nvim's built-in functionality! The
-following is a rough guide.
+*   Fancy but understated
+*   Lightweight
+*   Hackable
+
+This turns out to be very achievable with nvim's built-in functionality only -
+no plugins here. Let's get our Marie Kondo on.
+
