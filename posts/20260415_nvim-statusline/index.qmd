@@ -1,35 +1,27 @@
 ---
-title: Rolling your own Neovim statusline
+title: Roll your own Neovim statusline
 date: 2026-04-15
 ---
 
-With the release of Neovim 0.12 I decided to finally overhaul my statusline.
-For a long time this has been the one part of my config which has never felt
-great.
-
-## The default statusline
-
-For the uninitiated, this is what the default Neovim statusline looks like:
+The default Neovim statusline looks like this:
 
 ![Default Neovim statusline](nvim-statusline-default.png)
 
-By default you get:
+A zero-config setup gets you:
 
-*   The full path to the current buffer's file
-*   The cursor position in the file (`49,29`)
-*   The position of the **viewport relative to the length** of the file (`62%`)
+*   The path to the current file (`~/Repos/dotfiles/.config/nvim/init.lua`)
+*   A modified status indicator (`[+]` to show there are unsaved changes)
+*   The cursor position (`49,29`)
+*   The position of the viewport (`62%`)
+*   As of 0.12 you also get other stuff sometimes, e.g. LSP progress messages
 
+For my money this is actually a great set of defaults. But, I spend hours every
+day in this editor, so a few tweaks will go a long way. I want my statusline to
+be:
 
-I've been a long time user *of* the _very_ _**popular**_
-[lualine](https://github.com/nvim-lualine/lualine.nvim), but creating a custom
-statusline that does exactly what I want 
+*   Fancy but still understated
+*   Simple (no big plugin dependencies)
+*   Hackable, e.g. in case I want to see other information in different contexts
 
-
-``` lua
-local a = b + c
-
-for i, x in pairs({a = 1, b = 2}) do
-    print(i)
-    print(x)
-end
-```
+This turns out to be very achievable with nvim's built-in functionality! The
+following is a rough guide.
