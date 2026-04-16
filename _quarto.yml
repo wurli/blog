@@ -4,12 +4,16 @@ project:
 website:
   title: "Jacob Scott"
   search: false
-  navbar:
-    right:
+  navbar: false
+  sidebar:
+    style: "floating"
+    contents:
       - about.qmd
-      - icon: github
+      - text: "GitHub"
+        icon: github
         href: https://github.com/wurli
-      - icon: mastodon
+      - text: "Mastodon"
+        icon: mastodon
         href: https://fosstodon.org/@_wurli
 
 format:
@@ -17,8 +21,8 @@ format:
     theme: solar
     monofont: "CommitMono"
     css: styles.css
-    filters:
-      - filters/show-markdown-syntax.lua
+    title-block-banner: false
+    # toc: true
 
 execute:
   freeze: auto

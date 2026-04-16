@@ -1,12 +1,15 @@
 ---
-title: "Rolling your own Neovim statusline"
-date: "2026-04-15"
+title: Rolling your own Neovim statusline
+description: It's not as bad as you think
+date: 2026-04-15
 categories: [code, neovim, lua]
 ---
 
 With the release of Neovim 0.12 I decided to finally overhaul my statusline.
 For a long time this has been the one part of my config which has never felt
 great.
+
+## The default statusline
 
 For the uninitiated, this is what the default Neovim statusline looks like:
 

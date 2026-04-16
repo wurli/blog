@@ -1,16 +1,23 @@
-/* Font Face Declarations */
+/* ===== CSS Variables ===== */
+:root {
+  --accent-color: #a87b8a;
+  --delimiter-italic: "_";
+  --delimiter-bold: "**";
+  --delimiter-code: "`";
+  --code-block-delimiter-color: var(--bs-secondary);
+}
+
+/* ===== Font Declarations ===== */
 @font-face {
   font-family: 'CommitMono';
   src: url('./fonts/CommitMono-400-Regular.otf') format('opentype');
   font-weight: 400;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'CommitMono';
   src: url('./fonts/CommitMono-700-Regular.otf') format('opentype');
   font-weight: 700;
-  font-style: normal;
 }
 
 @font-face {
@@ -27,45 +34,69 @@
   font-style: italic;
 }
 
-/* Apply CommitMono to all text */
-body,
-html,
-p,
-div,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-a,
-button,
-input,
-textarea,
-select {
+/* ===== Global Styles ===== */
+* {
   font-family: 'CommitMono', monospace !important;
 }
 
-/* Change list bullet to * (only in main content) */
+h2 {
+  border-bottom: none !important;
+}
+
+figcaption {
+  text-align: right;
+}
+
+/* ===== Markdown Syntax Visualization (in document content only) ===== */
 #quarto-document-content ul li::marker {
   content: "* ";
 }
 
-/* Make italic text unsaturated pink */
-em,
-i {
-  color: #a87b8a;
+#quarto-document-content em,
+#quarto-document-content i:not(.bi):not([class*="icon"]),
+#quarto-document-content strong,
+#quarto-document-content b,
+#quarto-document-content code:not(pre code) {
+  color: var(--accent-color);
 }
 
-/* Make bold text unsaturated pink */
-strong,
-b {
-  color: #a87b8a;
+/* Italic delimiters */
+#quarto-document-content em::before,
+#quarto-document-content i:not(.bi):not([class*="icon"])::before {
+  content: var(--delimiter-italic);
 }
 
-/* Show markdown link format on hover (only in post pages, not listing page) */
+#quarto-document-content em::after,
+#quarto-document-content i:not(.bi):not([class*="icon"])::after {
+  content: var(--delimiter-italic);
+}
+
+/* Bold delimiters */
+#quarto-document-content strong::before,
+#quarto-document-content b::before {
+  content: var(--delimiter-bold);
+}
+
+#quarto-document-content strong::after,
+#quarto-document-content b::after {
+  content: var(--delimiter-bold);
+}
+
+/* Code delimiters (exclude code inside code blocks) */
+#quarto-document-content code:not(pre code)::before,
+#quarto-document-content code:not(pre code)::after {
+  content: var(--delimiter-code);
+}
+
+/* Heading delimiters (exclude listing/category titles) */
+#quarto-document-content h1:not(.listing-title):not(.quarto-listing-category-title)::before { content: "# "; }
+#quarto-document-content h2:not(.listing-title):not(.quarto-listing-category-title)::before { content: "## "; }
+#quarto-document-content h3:not(.listing-title):not(.quarto-listing-category-title)::before { content: "### "; }
+#quarto-document-content h4:not(.listing-title):not(.quarto-listing-category-title)::before { content: "#### "; }
+#quarto-document-content h5:not(.listing-title):not(.quarto-listing-category-title)::before { content: "##### "; }
+#quarto-document-content h6:not(.listing-title):not(.quarto-listing-category-title)::before { content: "###### "; }
+
+/* ===== Link Behavior ===== */
 body.fullcontent #quarto-document-content a:hover::before {
   content: "[";
 }
@@ -73,3 +104,25 @@ body.fullcontent #quarto-document-content a:hover::before {
 body.fullcontent #quarto-document-content a:hover::after {
   content: "](" attr(href) ")";
 }
+
+/* ===== Code Block Styling ===== */
+#quarto-document-content pre.sourceCode::before,
+#quarto-document-content pre.sourceCode::after {
+  display: block;
+  color: var(--code-block-delimiter-color);
+}
+
+#quarto-document-content pre.sourceCode::before {
+  margin-bottom: 0;
+}
+
+#quarto-document-content pre.sourceCode::after {
+  content: "```";
+  margin-top: 0;
+}
+
+#quarto-document-content pre.sourceCode.lua::before { content: "``` lua"; }
+#quarto-document-content pre.sourceCode.r::before { content: "``` r"; }
+#quarto-document-content pre.sourceCode.python::before { content: "``` python"; }
+#quarto-document-content pre.sourceCode.javascript::before { content: "``` javascript"; }
+#quarto-document-content pre.sourceCode.bash::before { content: "``` bash"; }
