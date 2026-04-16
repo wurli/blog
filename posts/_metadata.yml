@@ -6,3 +6,9 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: false
+
+# Add class to body for styling
+body-classes: post-page
+
+# Don't show 'PUBLISHED' above the date
+published-title: ""
