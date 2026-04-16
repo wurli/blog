@@ -51,6 +51,7 @@ body {
 #quarto-content {
   flex: 1 !important;
   padding-top: clamp(4em, 15vh, 10em) !important;
+  overflow: visible !important; /* Required for sticky to work */
 }
 
 .footer {
@@ -117,6 +118,16 @@ body.post-page .sidebar-navigation a[href*="posts.html"]::before {
 body.post-page .sidebar-navigation a[href*="posts.qmd"],
 body.post-page .sidebar-navigation a[href*="posts.html"] {
   color: var(--highlight-color) !important;
+}
+
+/* Don't allow sidebar to move when scrolling */
+#quarto-sidebar {
+  position: sticky !important;
+  top: clamp(4em, 15vh, 10em) !important;
+  align-self: start !important; /* 'start' is correct for CSS Grid */
+  height: fit-content !important; /* Prevent vertical stretching */
+  max-height: calc(100vh - clamp(4em, 15vh, 10em));
+  overflow-y: auto;
 }
 
 /* Adjust sidebar title positioning */
