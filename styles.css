@@ -1,1 +1,264 @@
-/* css styles */
+/* ===== CSS Variables ===== */
+:root {
+  --accent-color: #a87b8a;
+  --delimiter-italic: "_";
+  --delimiter-bold: "**";
+  --delimiter-code: "`";
+  --code-block-delimiter-color: var(--bs-secondary);
+  --highlight-color: #52d970;
+  --page-top-spacing: clamp(4em, 25vh, 10em);
+}
+
+/* ===== Font Declarations ===== */
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-400-Regular.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-700-Regular.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-400-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('./fonts/CommitMono-700-Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ===== Global Styles ===== */
+* {
+  font-family: 'CommitMono', monospace !important;
+}
+
+/* Add some padding to the top of the page */
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+/* Add 15% of screen height as top padding, clamped betweeen 4em and 10em */
+#quarto-content {
+  flex: 1 !important;
+  padding-top: var(--page-top-spacing) !important;
+  overflow: visible !important; /* Required for sticky to work */
+}
+
+.footer {
+  margin-top: auto !important;
+}
+
+/* Don't show a horizontal rule below h2 headings */
+h2 {
+  border-bottom: none !important;
+}
+
+figcaption {
+  text-align: right;
+}
+
+/* Hide table header row in listing */
+.quarto-listing table thead {
+  display: none;
+}
+
+/* Posts listing table: transparent background with horizontal rules */
+.quarto-listing-table.table {
+  --bs-table-bg: transparent !important;
+  --bs-table-accent-bg: transparent !important;
+  border: none !important;
+}
+
+.quarto-listing-table.table tbody tr {
+  border-bottom: 1px solid var(--bs-secondary) !important;
+}
+
+.quarto-listing-table.table tbody tr td {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Add invisible dot space to all sidebar navigation items */
+.sidebar-navigation a::before {
+  content: "● ";
+  color: transparent;
+  margin-right: 0.25em;
+}
+
+/* Show dot and highlight text for active sidebar navigation item */
+.sidebar-navigation .active::before {
+  color: var(--highlight-color) !important;
+}
+
+.sidebar-navigation .active {
+  color: var(--highlight-color) !important;
+}
+
+.sidebar-navigation .active a {
+  color: var(--highlight-color) !important;
+}
+
+/* Show dot and highlight text for Posts link when on post pages */
+body.post-page .sidebar-navigation a[href*="posts.qmd"]::before,
+body.post-page .sidebar-navigation a[href*="posts.html"]::before {
+  color: var(--highlight-color) !important;
+}
+
+body.post-page .sidebar-navigation a[href*="posts.qmd"],
+body.post-page .sidebar-navigation a[href*="posts.html"] {
+  color: var(--highlight-color) !important;
+}
+
+/* Don't allow sidebar to move when scrolling */
+#quarto-sidebar {
+  position: sticky !important;
+  top: var(--page-top-spacing) !important;
+  align-self: start !important;
+  height: fit-content !important;
+  max-height: calc(100vh - var(--page-top-spacing));
+  overflow-y: auto;
+}
+
+/* Adjust sidebar title positioning */
+.sidebar-header {
+  padding-left: 0 !important;
+  padding-top: 3em !important;
+  margin-left: -3em !important;
+}
+
+.sidebar-title {
+  font-size: 1.5em !important;
+  font-weight: 700 !important;
+}
+
+/* Remove background bubble from inline code */
+code {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+/* ===== Markdown Syntax Visualization (in document content only) ===== */
+#quarto-document-content ul li::marker {
+  content: "* ";
+}
+
+#quarto-document-content em,
+#quarto-document-content i:not(.bi):not([class*="icon"]),
+#quarto-document-content strong,
+#quarto-document-content b,
+#quarto-document-content code:not(pre code) {
+  color: var(--accent-color);
+}
+
+/* Italic delimiters */
+#quarto-document-content em::before,
+#quarto-document-content i:not(.bi):not([class*="icon"])::before {
+  content: var(--delimiter-italic);
+}
+
+#quarto-document-content em::after,
+#quarto-document-content i:not(.bi):not([class*="icon"])::after {
+  content: var(--delimiter-italic);
+}
+
+/* Bold delimiters */
+#quarto-document-content strong::before,
+#quarto-document-content b::before {
+  content: var(--delimiter-bold);
+}
+
+#quarto-document-content strong::after,
+#quarto-document-content b::after {
+  content: var(--delimiter-bold);
+}
+
+/* Code delimiters (exclude code inside code blocks) */
+#quarto-document-content code:not(pre code)::before,
+#quarto-document-content code:not(pre code)::after {
+  content: var(--delimiter-code);
+}
+
+/* Heading delimiters (exclude listing/category titles) */
+#quarto-document-content h1:not(.listing-title):not(.quarto-listing-category-title)::before { content: "# "; }
+#quarto-document-content h2:not(.listing-title):not(.quarto-listing-category-title)::before { content: "## "; }
+#quarto-document-content h3:not(.listing-title):not(.quarto-listing-category-title)::before { content: "### "; }
+#quarto-document-content h4:not(.listing-title):not(.quarto-listing-category-title)::before { content: "#### "; }
+#quarto-document-content h5:not(.listing-title):not(.quarto-listing-category-title)::before { content: "##### "; }
+#quarto-document-content h6:not(.listing-title):not(.quarto-listing-category-title)::before { content: "###### "; }
+
+/* ===== Link Behavior ===== */
+body.fullcontent #quarto-document-content a::before,
+body.fullcontent #quarto-document-content a::after {
+  opacity: 0;
+  transition: opacity 0.1s ease-in 0.3s;
+}
+
+body.fullcontent #quarto-document-content a:hover::before {
+  content: "[";
+  opacity: 1;
+}
+
+body.fullcontent #quarto-document-content a:hover::after {
+  content: "](" attr(href) ")";
+  opacity: 1;
+}
+
+/* Disable link expansion in listings and headings */
+.quarto-listing a:hover::before,
+.quarto-listing a:hover::after,
+h1 a:hover::before, h1 a:hover::after,
+h2 a:hover::before, h2 a:hover::after,
+h3 a:hover::before, h3 a:hover::after,
+h4 a:hover::before, h4 a:hover::after,
+h5 a:hover::before, h5 a:hover::after,
+h6 a:hover::before, h6 a:hover::after {
+  content: none !important;
+}
+
+/* ===== Code Block Styling ===== */
+#quarto-document-content pre.sourceCode::before,
+#quarto-document-content pre.sourceCode::after {
+  display: block;
+  color: var(--code-block-delimiter-color);
+}
+
+#quarto-document-content pre.sourceCode::before {
+  margin-bottom: 0;
+}
+
+#quarto-document-content pre.sourceCode::after {
+  content: "```";
+  margin-top: 0;
+}
+
+#quarto-document-content pre.sourceCode.lua::before { content: "``` lua"; }
+#quarto-document-content pre.sourceCode.r::before { content: "``` r"; }
+#quarto-document-content pre.sourceCode.python::before { content: "``` python"; }
+#quarto-document-content pre.sourceCode.javascript::before { content: "``` javascript"; }
+#quarto-document-content pre.sourceCode.bash::before { content: "``` bash"; }
+
+/* ===== Custom Footer ===== */
+.custom-footer {
+  margin-top: 3em;
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--bs-secondary);
+}
+
+.custom-footer a {
+  color: var(--bs-secondary);
+  margin-left: 0.6em;
+}

@@ -1,9 +1,9 @@
 [
   {
-    "listing": "/about.html",
+    "listing": "/posts.html",
     "items": [
-      "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html"
+      "/posts/bla/index.html",
+      "/posts/20260415_nvim-statusline/index.html"
     ]
   }
 ]
