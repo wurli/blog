@@ -6,6 +6,9 @@ minify_html = true
 generate_feeds = true
 feed_filenames = ["rss.xml"]
 
+[markdown]
+insert_anchor_links = "heading"
+
 [markdown.highlighting]
 theme = "dracula"
 

@@ -4,7 +4,7 @@
 // Solarized-inspired dark theme with custom accents
 
 $bg-color: #002b36;
-$text-color: #839496;
+$text-color: #b0bfbf;
 $accent-color: #d08090;      // Pink - used for italic/bold
 $code-color: #5ab4b4;        // Teal - used for inline code
 $highlight-color: #52d970;   // Green - used for active nav items
@@ -161,7 +161,7 @@ a {
 
 .main-content {
   flex: 1;
-  max-width: 650px;
+  max-width: 750px;
   min-width: 0;
 
   // Inline `code` gets backticks and teal color
@@ -279,6 +279,16 @@ a {
   h1, h2, h3, h4, h5, h6 {
     margin-top: 2rem;
     margin-bottom: 1rem;
+
+    // Anchor links in headings should look like normal text
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   h1::before { content: "# "; }
@@ -318,10 +328,12 @@ a {
 
   pre {
     background-color: darken($bg-color, 2%);
-    padding: 1rem;
+    padding: 0.3rem 0.3rem;
     border-radius: 4px;
     overflow-x: auto;
     margin-bottom: 1rem;
+    line-height: 1.4;
+    tab-size: 4;
 
     // Closing ``` fence
     &::after {
@@ -340,7 +352,7 @@ a {
         content: "``` " attr(data-lang);
         display: block;
         color: $secondary-color;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0rem;
       }
 
       &::after {
@@ -404,6 +416,26 @@ a {
     margin: 1rem 0;
   }
 
+  // -----------------------------------------------------------------------------
+  // Tables
+  // -----------------------------------------------------------------------------
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+
+    th, td {
+      border: 1px solid $secondary-color;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: darken($bg-color, 2%);
+    }
+  }
+
   figcaption {
     text-align: right;
     color: $secondary-color;
@@ -413,27 +445,40 @@ a {
   // -----------------------------------------------------------------------------
   // Blockquotes
   // -----------------------------------------------------------------------------
-  // Uses > character instead of left border
+  // Each paragraph gets a column of ">" via repeating SVG background.
+  // Background repeats at line-height intervals so every wrapped line gets one.
+  // Not selectable since it's a background image.
 
   blockquote {
     border-left: none;
-    padding-left: 1.5rem;
+    padding-left: 0;
     margin: 1rem 0;
     color: $secondary-color;
-    position: relative;
 
-    // \A is a CSS newline. This creates a vertical column of ">" characters.
-    // white-space: pre preserves the newlines; height/overflow clips excess.
-    &::before {
-      content: ">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";
-      white-space: pre;
-      position: absolute;
-      left: 0;
-      top: 0;
-      line-height: 1.6;
-      color: $secondary-color;
-      overflow: hidden;
-      height: 100%;
+    p {
+      position: relative;
+      padding-left: 1.2em;
+      margin-bottom: 0;
+
+      // Repeated ">" chars using CSS content (inherits CommitMono font).
+      // \A is a CSS newline. height: 100% + overflow: hidden clips excess.
+      &::before {
+        content: ">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";
+        white-space: pre;
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: inherit;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      // Add blank line between paragraphs (next paragraph's ::before adds the >)
+      &:not(:last-child)::after {
+        content: "\A\A";
+        white-space: pre;
+        line-height: inherit;
+      }
     }
   }
 
