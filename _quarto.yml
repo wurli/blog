@@ -4,9 +4,15 @@ project:
 website:
   title: "Jacob Scott"
   search: false
-  navbar: false
+  navbar:
+    collapse: false
+    left:
+      - text: "About"
+        href: index.qmd
+      - text: "Posts"
+        href: posts.qmd
   sidebar:
-    style: "docked"
+    style: "floating"
     contents:
       - text: "About"
         href: index.qmd
@@ -15,10 +21,12 @@ website:
 
 format:
   html:
-    theme: solar
+    theme:
+      - solar
+      - theme.scss
     mainfont: "CommitMono"
     monofont: "CommitMono"
-    css: styles.css
+    css: styles.scss
     title-block-banner: false
     include-after-body: _footer.html
 

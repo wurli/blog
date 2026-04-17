@@ -1,0 +1,21 @@
+/*-- scss:rules --*/
+
+/* Hide navbar on desktop, show sidebar */
+@include media-breakpoint-up(lg) {
+  .navbar {
+    display: none !important;
+  }
+}
+
+/* Hide sidebar on mobile, show navbar */
+@include media-breakpoint-down(lg) {
+  #quarto-sidebar,
+  #quarto-sidebar-glass,
+  .quarto-secondary-nav {
+    display: none !important;
+  }
+
+  #quarto-content {
+    padding-top: 1em !important;
+  }
+}
