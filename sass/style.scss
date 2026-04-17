@@ -1,0 +1,541 @@
+// =============================================================================
+// VARIABLES
+// =============================================================================
+// Solarized-inspired dark theme with custom accents
+
+$bg-color: #002b36;
+$text-color: #839496;
+$accent-color: #d08090;      // Pink - used for italic/bold
+$code-color: #5ab4b4;        // Teal - used for inline code
+$highlight-color: #52d970;   // Green - used for active nav items
+$secondary-color: #586e75;   // Muted - used for dates, captions, etc.
+$link-color: #268bd2;        // Blue - used for links
+
+// =============================================================================
+// FONTS
+// =============================================================================
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('/fonts/CommitMono-400-Regular.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('/fonts/CommitMono-700-Regular.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('/fonts/CommitMono-400-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CommitMono';
+  src: url('/fonts/CommitMono-700-Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+// =============================================================================
+// RESET & BASE STYLES
+// =============================================================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'CommitMono', monospace;
+  background-color: $bg-color;
+  color: $text-color;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// =============================================================================
+// LAYOUT
+// =============================================================================
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.page-wrapper {
+  display: flex;
+  flex: 1;
+  padding-top: clamp(4rem, 20vh, 15rem);
+}
+
+// =============================================================================
+// SIDEBAR
+// =============================================================================
+// Sticky sidebar with site title and navigation
+
+.sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  padding-right: 2rem;
+  position: sticky;
+  top: clamp(4rem, 20vh, 15rem);
+  height: fit-content;
+
+  .site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-color;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 2rem;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  nav {
+    ul {
+      list-style: none;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+      display: block;
+
+      // Bullet point before each nav item (hidden until active)
+      &::before {
+        content: "\25CF ";
+        color: transparent;
+        margin-right: 0.25rem;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    // Active nav item gets green highlight
+    a.active {
+      color: $highlight-color;
+
+      &::before {
+        color: $highlight-color;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// MAIN CONTENT
+// =============================================================================
+// Markdown-style decorations applied site-wide
+
+.main-content {
+  flex: 1;
+  max-width: 650px;
+  min-width: 0;
+
+  // Inline `code` gets backticks and teal color
+  code:not(pre code) {
+    color: $code-color;
+    background: transparent;
+
+    &::before, &::after {
+      content: "`";
+    }
+  }
+
+  // _Italic_ gets underscores and pink color
+  em, i {
+    color: $accent-color;
+
+    &::before, &::after {
+      content: "_";
+    }
+  }
+
+  // **Bold** gets asterisks and pink color
+  strong, b {
+    color: $accent-color;
+
+    &::before, &::after {
+      content: "**";
+    }
+  }
+}
+
+// =============================================================================
+// ABOUT PAGE
+// =============================================================================
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// =============================================================================
+// POSTS LIST
+// =============================================================================
+
+.posts-list {
+  list-style: none;
+
+  li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $secondary-color;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  a {
+    color: $text-color;
+  }
+
+  .post-date {
+    color: $secondary-color;
+    white-space: nowrap;
+  }
+}
+
+// =============================================================================
+// POST PAGE
+// =============================================================================
+
+.post {
+  // Post title gets a # prefix like markdown
+  h1.post-title {
+    margin-bottom: 0.5rem;
+
+    &::before {
+      content: "# ";
+    }
+  }
+
+  .post-meta {
+    color: $secondary-color;
+    margin-bottom: 2rem;
+  }
+}
+
+// =============================================================================
+// POST CONTENT
+// =============================================================================
+// Markdown-style decorations for post body content
+
+.post-content {
+
+  // -----------------------------------------------------------------------------
+  // Headings - prefixed with # symbols
+  // -----------------------------------------------------------------------------
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h1::before { content: "# "; }
+  h2::before { content: "## "; }
+  h3::before { content: "### "; }
+  h4::before { content: "#### "; }
+  h5::before { content: "##### "; }
+  h6::before { content: "###### "; }
+
+  // -----------------------------------------------------------------------------
+  // Paragraphs & Lists
+  // -----------------------------------------------------------------------------
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+  }
+
+  // Unordered lists use * as marker
+  ul {
+    list-style: none;
+
+    li::before {
+      content: "* ";
+      margin-left: -1.2rem;
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Code Blocks
+  // -----------------------------------------------------------------------------
+  // Fenced with ``` markers showing the language
+
+  pre {
+    background-color: darken($bg-color, 2%);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+
+    // Closing ``` fence
+    &::after {
+      content: "```";
+      display: block;
+      color: $secondary-color;
+      margin-top: 0.5rem;
+    }
+
+    code {
+      background: transparent;
+      padding: 0;
+
+      // Opening ``` fence with language (e.g. "``` lua")
+      &::before {
+        content: "``` " attr(data-lang);
+        display: block;
+        color: $secondary-color;
+        margin-bottom: 0.5rem;
+      }
+
+      &::after {
+        content: none;
+      }
+    }
+
+    // Copy button - appears on hover
+    .code-copy-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: 0;
+      margin-top: 5px;
+      margin-right: 8px;
+      background-color: transparent;
+      z-index: 3;
+      padding: 0.25rem;
+      cursor: pointer;
+
+      .copy-icon {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(88, 110, 117)" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>');
+        background-repeat: no-repeat;
+        background-size: 1rem 1rem;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      &:hover .copy-icon {
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(131, 148, 150)" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>');
+      }
+
+      // Checkmark icon when copied
+      &.copied .copy-icon {
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(131, 148, 150)" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>');
+        opacity: 1;
+      }
+
+      // Fade out before switching back to clipboard icon
+      &.fade-out .copy-icon {
+        opacity: 0;
+      }
+    }
+
+    &:hover .code-copy-button .copy-icon {
+      opacity: 1;
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Images & Figures
+  // -----------------------------------------------------------------------------
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem 0;
+  }
+
+  figcaption {
+    text-align: right;
+    color: $secondary-color;
+    font-size: 0.9rem;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Blockquotes
+  // -----------------------------------------------------------------------------
+  // Uses > character instead of left border
+
+  blockquote {
+    border-left: none;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+    color: $secondary-color;
+    position: relative;
+
+    // \A is a CSS newline. This creates a vertical column of ">" characters.
+    // white-space: pre preserves the newlines; height/overflow clips excess.
+    &::before {
+      content: ">\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>";
+      white-space: pre;
+      position: absolute;
+      left: 0;
+      top: 0;
+      line-height: 1.6;
+      color: $secondary-color;
+      overflow: hidden;
+      height: 100%;
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Link Hover Expansion
+  // -----------------------------------------------------------------------------
+  // External links expand to show [text](url) on hover
+
+  a[href^="http"]::before,
+  a[href^="http"]::after {
+    opacity: 0;
+    transition: opacity 0.1s ease-in 0.3s;
+  }
+
+  a[href^="http"]:hover {
+    text-decoration: none;
+  }
+
+  a[href^="http"]:hover::before {
+    content: "[";
+    opacity: 1;
+  }
+
+  a[href^="http"]:hover::after {
+    content: "](" attr(href) ")";
+    opacity: 1;
+  }
+}
+
+// =============================================================================
+// FOOTER
+// =============================================================================
+
+.footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  color: $secondary-color;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  a {
+    color: $secondary-color;
+    margin-left: 0.6rem;
+
+    &:hover {
+      color: $text-color;
+      text-decoration: none;
+    }
+
+    // Disable link expansion on footer icons
+    &::before, &::after {
+      content: none !important;
+    }
+  }
+}
+
+// =============================================================================
+// MOBILE STYLES
+// =============================================================================
+// Collapses sidebar into horizontal navbar
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $secondary-color;
+
+    .site-title {
+      margin-bottom: 0;
+      font-size: 1.2rem;
+    }
+
+    nav {
+      ul {
+        display: flex;
+        gap: 1rem;
+      }
+
+      li {
+        margin-bottom: 0;
+      }
+
+      // Hide bullet points on mobile
+      a::before {
+        content: none;
+      }
+    }
+  }
+
+  .main-content {
+    padding-top: 2rem;
+  }
+}

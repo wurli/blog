@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Posts | {{ config.title }}{% endblock %}
+
+{% block content %}
+<ul class="posts-list">
+  {% set section = get_section(path="posts/_index.md") %}
+  {% for post in section.pages %}
+  <li>
+    <a href="{{ post.permalink }}">{{ post.title }}</a>
+    <span class="post-date">{{ post.date | date(format="%Y-%m-%d") }}</span>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
