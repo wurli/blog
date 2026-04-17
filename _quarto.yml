@@ -26,7 +26,7 @@ format:
       - theme.scss
     mainfont: "CommitMono"
     monofont: "CommitMono"
-    css: styles.scss
+    css: styles.css
     title-block-banner: false
     include-after-body: _footer.html
 
