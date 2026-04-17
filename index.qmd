@@ -3,6 +3,7 @@ title: "Hi 👋"
 image: profile.jpg
 about:
   template: solana
+body-classes: about-page
 ---
 
 I'm a software developer/data scientist/data engineer based in Cardiff, Wales.

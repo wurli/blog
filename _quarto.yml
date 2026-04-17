@@ -5,6 +5,7 @@ website:
   title: "Jacob Scott"
   search: false
   navbar:
+    title: false
     collapse: false
     left:
       - text: "About"
@@ -12,6 +13,7 @@ website:
       - text: "Posts"
         href: posts.qmd
   sidebar:
+    header: "[Jacob Scott](/)"
     style: "floating"
     contents:
       - text: "About"

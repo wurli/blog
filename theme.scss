@@ -1,4 +1,22 @@
+/*-- scss:defaults --*/
+$highlight-color: #52d970;
+
 /*-- scss:rules --*/
+
+/* Remove default bright white active state from navbar */
+.navbar .nav-link.active {
+  color: inherit !important;
+}
+
+/* Highlight navbar items based on current page using position selectors */
+body.about-page .navbar-nav .nav-item:first-child .nav-link {
+  color: $highlight-color !important;
+}
+
+body.posts-page .navbar-nav .nav-item:nth-child(2) .nav-link,
+body.post-page .navbar-nav .nav-item:nth-child(2) .nav-link {
+  color: $highlight-color !important;
+}
 
 /* Hide navbar on desktop, show sidebar */
 @include media-breakpoint-up(lg) {

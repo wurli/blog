@@ -1,4 +1,5 @@
 ---
+body-classes: posts-page
 listing:
   contents: posts
   sort: "date desc"
