@@ -6,6 +6,7 @@
   --delimiter-code: "`";
   --code-block-delimiter-color: var(--bs-secondary);
   --highlight-color: #52d970;
+  --page-top-spacing: clamp(4em, 25vh, 10em);
 }
 
 /* ===== Font Declarations ===== */
@@ -50,7 +51,7 @@ body {
 /* Add 15% of screen height as top padding, clamped betweeen 4em and 10em */
 #quarto-content {
   flex: 1 !important;
-  padding-top: clamp(4em, 15vh, 10em) !important;
+  padding-top: var(--page-top-spacing) !important;
   overflow: visible !important; /* Required for sticky to work */
 }
 
@@ -123,10 +124,10 @@ body.post-page .sidebar-navigation a[href*="posts.html"] {
 /* Don't allow sidebar to move when scrolling */
 #quarto-sidebar {
   position: sticky !important;
-  top: clamp(4em, 15vh, 10em) !important;
-  align-self: start !important; /* 'start' is correct for CSS Grid */
-  height: fit-content !important; /* Prevent vertical stretching */
-  max-height: calc(100vh - clamp(4em, 15vh, 10em));
+  top: var(--page-top-spacing) !important;
+  align-self: start !important;
+  height: fit-content !important;
+  max-height: calc(100vh - var(--page-top-spacing));
   overflow-y: auto;
 }
 

@@ -20,9 +20,7 @@ format:
     monofont: "CommitMono"
     css: styles.css
     title-block-banner: false
-    fontsize: 0.98em
     include-after-body: _footer.html
-    # toc: true
 
 execute:
   freeze: auto
