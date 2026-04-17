@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jacobnscott.com/index.html</loc>
+    <lastmod>2026-04-17T09:37:42.273Z</lastmod>
+  </url>
+  <url>
     <loc>https://jacobnscott.com/posts.html</loc>
-    <lastmod>2026-04-17T08:39:07.215Z</lastmod>
+    <lastmod>2026-04-17T09:37:42.273Z</lastmod>
   </url>
   <url>
     <loc>https://jacobnscott.com/posts/20260415_nvim-statusline/index.html</loc>
-    <lastmod>2026-04-17T08:44:53.375Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jacobnscott.com/index.html</loc>
-    <lastmod>2026-04-16T17:13:07.444Z</lastmod>
+    <lastmod>2026-04-17T09:37:42.274Z</lastmod>
   </url>
 </urlset>

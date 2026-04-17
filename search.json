@@ -1,5 +1,15 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hi 👋",
+    "section": "",
+    "text": "I’m a software developer/data scientist/data engineer based in Cardiff, Wales. This is where I write about stuff.\nFor humans only: jscott2718&lt;at&gt;gmail&lt;dot&gt;com",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
     "objectID": "posts.html",
     "href": "posts.html",
     "title": "Jacob Scott",
@@ -15,15 +25,5 @@
     "title": "Roll your own Neovim statusline",
     "section": "",
     "text": "The default Neovim statusline looks like this:\n\n\n\nDefault Neovim statusline\n\n\nWith zero config you get:\n\nThe path to the current file (~/Repos/dotfiles/.config/nvim/init.lua)\nA modified status indicator ([+] to show there are unsaved changes)\nThe cursor position (49,29)\nThe position of the viewport (62%)\nAs of 0.12 you also get other stuff sometimes, e.g. LSP progress messages\n\nFor my money this is actually a great set of defaults. But if you also spend hours every day in this editor, you may ask yourself, does it spark joy?\nI want a statusline which is:\n\nFancy but understated\nLightweight\nHackable\n\nThis turns out to be very achievable with nvim’s built-in functionality only - no plugins here. Let’s get our Marie Kondo on."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Hi 👋",
-    "section": "",
-    "text": "I’m a software developer/data scientist/data engineer based in Cardiff, Wales. This is where I write about stuff.\nFor humans only: jscott2718&lt;at&gt;gmail&lt;dot&gt;com",
-    "crumbs": [
-      "About"
-    ]
   }
 ]
