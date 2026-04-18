@@ -4,6 +4,10 @@
 
 {% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
+{% block og_title %}{{ page.title }}{% endblock %}
+
+{% block og_url %}{{ page.permalink }}{% endblock %}
+
 {% block content %}
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>

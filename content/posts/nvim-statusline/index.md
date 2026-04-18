@@ -2,6 +2,7 @@
 title = "Roll your own Neovim statusline"
 date = 2026-04-18
 template = "post.html"
+image = "statusline-final.gif"
 +++
 
 ## tl;dr
