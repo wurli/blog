@@ -6,7 +6,8 @@ template = "post.html"
 
 ## tl;dr
 
-You can create a (really) nice statusline without plugins quite easily.
+You can create a (really) nice statusline quite easily without dedicated
+plugins:
 
 ![The final product](statusline-final.gif)
 
