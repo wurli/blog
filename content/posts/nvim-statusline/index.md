@@ -20,7 +20,7 @@ The unconfigured statusline looks something like this:
 You get:
 
 * The path to the current file
-* A modified status indicator (`[+]` to show there are unsaved changes)
+* A modified status indicator (`[+]` if there are unsaved changes)
 * LSP diagnostics (`E:1 W:2`)
 * The cursor position (`42,0-1`)
 * The position of the viewport (`Bot`, i.e. bottom of the page)
@@ -99,8 +99,8 @@ vim.opt.statusline = "%!v:lua.require'statusline'.render()"
 
 With this setup we can now insert arbitrary components into our statusline by
 including them in `render()`. You might notice that I also snuck in some
-special behaviour for statuslines in non-focussed windows - you don't have to
-keep this, but all the other kids are doing it.
+special behaviour for lines in non-focussed windows - you don't have to keep
+this, but all the other kids are doing it.
 
 Our statusline now looks like this:
 
@@ -108,7 +108,7 @@ Our statusline now looks like this:
 
 ## Setting up some highlight groups
 
-For a *truly* fancy statusline you will probably want to define some custom
+For a *truly* fancy setup you will probably want to define some custom
 highlights. You can use preexisting ones, but IMO it's a little clearer to
 define some dedicated highlight groups. You can put this code at the top of
 `nvim/lua/statusline.lua`:
