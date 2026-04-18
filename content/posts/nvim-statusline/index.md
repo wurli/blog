@@ -1,18 +1,18 @@
 +++
 title = "Roll your own Neovim statusline"
-date = 2026-04-15
+date = 2026-04-18
 template = "post.html"
 +++
 
 ## tl;dr
 
-You can create a (really) nice status-line without plugins quite easily.
+You can create a (really) nice statusline without plugins quite easily.
 
 ![The final product](statusline-final.gif)
 
-## Neovim's default status-line
+## Neovim's default statusline
 
-The unconfigured status-line looks something like this:
+The unconfigured statusline looks something like this:
 
 ![Nvim's default](statusline-default.png)
 
@@ -27,7 +27,7 @@ You get:
 For my money this is actually a great set of defaults. But if you also spend
 hours every day in this editor, you may ask yourself, *does it spark joy*?
 
-For me, an ideal, Marie Kondo-style status-line should be:
+For me, an ideal, Marie Kondo-style statusline should be:
 
 * Fancy but understated
 * Lightweight
@@ -38,8 +38,8 @@ here's how.
 
 ## What's in a statusline?
 
-The status-line [help page](https://neovim.io/doc/user/options/#'statusline')
-says this about the status-line option:
+The statusline [help page](https://neovim.io/doc/user/options/#'statusline')
+says this about the statusline option:
 
 > Contains printf-style "%" items interspersed with normal text, where
 > each item has the form: <br/>
@@ -53,18 +53,12 @@ it's sufficient to note only two:
 | `%#Bla#` | Apply the `Bla` highlight group to anything that comes next                                     |
 | `%=`     | Anything before this will be to the left of the status bar; anything after will be to the right |
 
-## Creating a status-line using Lua
+## Creating a statusline using Lua
 
-There's one more fact about status-line `{item}` options we should note from the
-help docs:
-
-> When the option starts with "%!" then it is used as an expression,
-> evaluated and the result is used as the option value.  Example: <br/>
-> `set statusline=%!MyStatusLine()`
-
-We can use this form to generate a status-line text using a Lua function. I
-recommend putting the Lua code in a dedicated module, and then setting the
-`'statusline'` option in your `init.lua`:
+First let's create a Lua function which returns a string formatted as per the
+above advice. I'm putting this in `nvim/lua` and returning it at the end of the
+script - this way I can just `require()` the file from anywhere in my Neovim
+config.
 
 ``` lua
 -- nvim/lua/statusline.lua
@@ -87,25 +81,36 @@ return {
 }
 ```
 
+There's one more fact about statusline `{item}` options we should note from the
+help docs:
+
+> When the option starts with "%!" then it is used as an expression,
+> evaluated and the result is used as the option value.  Example: <br/>
+> `set statusline=%!MyStatusLine()`
+
+We can use this, along with `v:lua`, to call our Lua function:
+
 ``` lua
 -- nvim/init.lua
 
 vim.opt.statusline = "%!v:lua.require'statusline'.render()"
 ```
 
-With this setup we can now insert arbitrary components into our status-line by
-including them in our `render()` function. You might notice that I also snuck
-in some special behaviour for status lines in non-focussed windows - you don't
-have to keep this, but all the other kids are doing it.
+With this setup we can now insert arbitrary components into our statusline by
+including them in `render()`. You might notice that I also snuck in some
+special behaviour for statuslines in non-focussed windows - you don't have to
+keep this, but all the other kids are doing it.
 
-Our status-line now looks like this:
+Our statusline now looks like this:
 
-![Basic configured status-line](statusline-configured.png)
+![Basic configured statusline](statusline-configured.png)
 
 ## Setting up some highlight groups
 
-For a *truly* fancy status-line you will probably want to define some custom
-highlights:
+For a *truly* fancy statusline you will probably want to define some custom
+highlights. You can use preexisting ones, but IMO it's a little clearer to
+define some dedicated highlight groups. You can put this code at the top of
+`nvim/lua/statusline.lua`:
 
 ``` lua
 local hl = function(group)
@@ -233,17 +238,52 @@ return {
 }
 ```
 
-(Note: if you set the mode in the status-line, you might also want to `:set
-noshowmode` so the it isn't also shown on the row below).
+(Note: if you set the mode in the statusline, you might also want to `:set
+noshowmode` so it doesn't get duplicated on the row below).
 
 This gets us something like this:
 
 ![Final example](statusline-with-mode.png)
 
+
+## Some gotchas
+
+**Gotcha: using buffer numbers**
+
+If you display buffer-specific information in your statusline, use the following
+code to get the buffer number:
+
+``` lua
+local statusline_bufnr = function()
+	return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+end
+```
+
+E.g. `vim.api.nvim_buf_get_name(0)` will always get the name for the buffer
+your cursor is in, but `vim.api.nvim_buf_get_name(statusline_bufnr())` will
+give window-specific file names.
+
+**Gotcha: statusline refresh**
+
+If you use a component which updates in the background or with a slight
+delay, you may find that your statusline doeesn't update, e.g. until you
+start modifying text. In these cases you can use `:redrawstatus` to
+trigger an update. E.g. I found I needed to do this in an autocommand to
+make sure I got snappy updates from information provided by
+[gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim):
+
+``` lua
+vim.api.nvim_create_autocmd("User", {
+	pattern = "GitSignsUpdate",
+	group = vim.api.nvim_create_augroup("statusline_git", {}),
+	command = "redrawstatus",
+})
+```
+
 ## Final notes
 
 This is hopefully enough for you to begin to lovingly craft your own
-status-line that does exactly what *you* need and nothing more. If you want
+statusline that does exactly what *you* need and nothing more. If you want
 some more inspiration you can see the actual [version I
 use](https://github.com/wurli/dotfiles/blob/main/.config/nvim/lua/statusline.lua)
 which includes components for the current file, Git status, etc.
