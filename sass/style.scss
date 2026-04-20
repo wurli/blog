@@ -430,6 +430,31 @@ a {
   }
 
   // -----------------------------------------------------------------------------
+  // Footnotes
+  // -----------------------------------------------------------------------------
+
+  .footnote-reference {
+    vertical-align: baseline;
+    font-size: inherit;
+
+    &::before {
+      content: "[^";
+    }
+
+    &::after {
+      content: "]";
+    }
+  }
+
+  .footnotes {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid $secondary-color;
+    font-size: 0.9rem;
+    color: $secondary-color;
+  }
+
+  // -----------------------------------------------------------------------------
   // Link Hover Expansion
   // -----------------------------------------------------------------------------
   // External links expand to show [text](url) on hover

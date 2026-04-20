@@ -8,6 +8,7 @@ feed_filenames = ["rss.xml"]
 
 [markdown]
 insert_anchor_links = "heading"
+bottom_footnotes = true
 
 [markdown.highlighting]
 theme = "dracula"
