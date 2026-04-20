@@ -4,7 +4,7 @@
 // Solarized-inspired dark theme with custom accents
 
 $bg-color: #002b36;
-$text-color: #b0bfbf;
+$text-color: #c0cfcf;
 $accent-color: #d08090;      // Pink - used for italic/bold
 $code-color: #5ab4b4;        // Teal - used for inline code
 $highlight-color: #52d970;   // Green - used for active nav items
@@ -52,7 +52,7 @@ $link-color: #268bd2;        // Blue - used for links
 }
 
 html {
-  font-size: 16px;
+  font-size: 14.5px;
 }
 
 body {
@@ -254,6 +254,7 @@ a {
 .post {
   // Post title gets a # prefix like markdown
   h1.post-title {
+    font-size: 1.6rem;
     margin-bottom: 0.5rem;
 
     &::before {
@@ -292,6 +293,13 @@ a {
       }
     }
   }
+
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.3rem; }
+  h4 { font-size: 1.2rem; }
+  h5 { font-size: 1.1rem; }
+  h6 { font-size: 1.0rem; }
 
   h1::before { content: "# "; }
   h2::before { content: "## "; }
