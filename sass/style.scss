@@ -189,91 +189,6 @@ a {
       content: "**";
     }
   }
-}
-
-// =============================================================================
-// ABOUT PAGE
-// =============================================================================
-
-.about {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-
-  .about-content {
-    flex: 1;
-    text-align: left;
-  }
-
-  .profile-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-
-  h1 {
-    margin-bottom: 1rem;
-  }
-
-  p {
-    margin-bottom: 0.5rem;
-  }
-}
-
-// =============================================================================
-// POSTS LIST
-// =============================================================================
-
-.posts-list {
-  list-style: none;
-
-  li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid $secondary-color;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  a {
-    color: $text-color;
-  }
-
-  .post-date {
-    color: $secondary-color;
-    white-space: nowrap;
-  }
-}
-
-// =============================================================================
-// POST PAGE
-// =============================================================================
-
-.post {
-  // Post title gets a # prefix like markdown
-  h1.post-title {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-
-    &::before {
-      content: "# ";
-    }
-  }
-
-  .post-meta {
-    color: $secondary-color;
-    margin-bottom: 2rem;
-  }
-}
-
-// =============================================================================
-// POST CONTENT
-// =============================================================================
-// Markdown-style decorations for post body content
-
-.post-content {
 
   // -----------------------------------------------------------------------------
   // Headings - prefixed with # symbols
@@ -316,13 +231,13 @@ a {
     margin-bottom: 1rem;
   }
 
-  ul, ol {
+  ul:not(.posts-list), ol {
     margin-bottom: 1rem;
     padding-left: 2rem;
   }
 
   // Unordered lists use * as marker
-  ul {
+  ul:not(.posts-list) {
     list-style: none;
 
     li::before {
@@ -498,18 +413,103 @@ a {
   // Link Hover Expansion
   // -----------------------------------------------------------------------------
   // External links expand to show [text](url) on hover
-  a[href^="http"]:hover {
+  :not(.posts-list) > a[href^="http"]:hover {
     text-decoration: none;
   }
 
-  a[href^="http"]:hover::before {
+  :not(.posts-list) > a[href^="http"]:hover::before {
     content: "[";
     opacity: 1;
   }
 
-  a[href^="http"]:hover::after {
+  :not(.posts-list) > a[href^="http"]:hover::after {
     content: "](" attr(href) ")";
     opacity: 1;
+  }
+}
+
+// =============================================================================
+// ABOUT PAGE
+// =============================================================================
+
+.about {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+
+  .about-content {
+    flex: 1;
+    text-align: left;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// =============================================================================
+// POSTS LIST
+// =============================================================================
+
+.posts-list {
+  list-style: none;
+
+  li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $secondary-color;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    &::before {
+      content: none;
+    }
+  }
+
+  a {
+    color: $text-color;
+
+    &::before, &::after {
+      content: none !important;
+    }
+  }
+
+  .post-date {
+    color: $secondary-color;
+    white-space: nowrap;
+  }
+}
+
+// =============================================================================
+// POST PAGE
+// =============================================================================
+
+.post {
+  // Post title gets a # prefix like markdown
+  h1.post-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+
+    &::before {
+      content: "# ";
+    }
+  }
+
+  .post-meta {
+    color: $secondary-color;
+    margin-bottom: 2rem;
   }
 }
 

@@ -21,6 +21,7 @@
           <ul>
             <li><a href="{{ get_url(path='/') }}" {% if current_path == "/" %}class="active"{% endif %}>About</a></li>
             <li><a href="{{ get_url(path='posts') }}" {% if current_path is starting_with("/posts") %}class="active"{% endif %}>Posts</a></li>
+            <li><a href="{{ get_url(path='projects') }}" {% if current_path is starting_with("/projects") %}class="active"{% endif %}>Projects</a></li>
           </ul>
         </nav>
       </aside>
