@@ -198,12 +198,6 @@ code {
 #quarto-document-content h6:not(.listing-title):not(.quarto-listing-category-title)::before { content: "###### "; }
 
 /* ===== Link Behavior ===== */
-body.fullcontent #quarto-document-content a::before,
-body.fullcontent #quarto-document-content a::after {
-  opacity: 0;
-  transition: opacity 0.1s ease-in 0.3s;
-}
-
 body.fullcontent #quarto-document-content a:hover::before {
   content: "[";
   opacity: 1;
