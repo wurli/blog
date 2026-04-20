@@ -8,7 +8,7 @@ $text-color: #c0cfcf;
 $accent-color: #d08090;      // Pink - used for italic/bold
 $code-color: #5ab4b4;        // Teal - used for inline code
 $highlight-color: #52d970;   // Green - used for active nav items
-$secondary-color: #586e75;   // Muted - used for dates, captions, etc.
+$secondary-color: #687e85;   // Muted - used for dates, captions, etc.
 $link-color: #268bd2;        // Blue - used for links
 
 // =============================================================================
@@ -189,6 +189,16 @@ a {
 
     &::before, &::after {
       content: "**";
+    }
+  }
+
+  // ~strikethrough~ gets tildes
+  s, del {
+    color: $secondary-color;
+
+    &::before, &::after {
+      content: "~";
+      display: inline-block; // Don't strike-through the tildes 
     }
   }
 
