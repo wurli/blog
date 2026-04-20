@@ -290,3 +290,9 @@ some more inspiration you can see the actual [version I
 use](https://github.com/wurli/dotfiles/blob/main/.config/nvim/lua/statusline.lua)
 which includes components for the current file, Git status, etc.
 
+
+/006   statusline-configured.png
+/001   statusline-custom-basic.png
+/005   statusline-default.png
+/002   statusline-final.gif
+/003   statusline-with-mode.png
