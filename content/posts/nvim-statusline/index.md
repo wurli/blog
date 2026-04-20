@@ -48,12 +48,18 @@ says this about the statusline option:
 > `%-0{minwid}.{maxwid}{item}`
 
 It also lists a bunch of options you can use as the `{item}`, although for us
-it's sufficient to note only two:
+it's sufficient to note only three:
 
 | Item     | Meaning                                                                                         |
 | -------  | -------                                                                                         |
 | `%#Bla#` | Apply the `Bla` highlight group to anything that comes next                                     |
 | `%=`     | Anything before this will be to the left of the status bar; anything after will be to the right |
+| `%{%`    | Anything after this is evaluated and then _re_-evaluated in the context of the statusline. This item is closed using `%}`[^1]. |
+
+[^1]: Thanks to Evgeni Chasnovski for kindly [pointing this
+out](https://www.reddit.com/r/neovim/comments/1sot8n7/comment/ogvo8v4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+in response to the first version of this post, which used the slightly less
+ergonomic `%!` to evaluate Lua code in the statusline.
 
 ## Creating a statusline using Lua
 
@@ -68,7 +74,7 @@ config.
 return {
 	render = function()
 		local active_win = vim.fn.win_getid()
-		local status_win = vim.g.statusline_winid
+		local status_win = tonumber(vim.g.actual_curwin)
 
 		if status_win ~= active_win then
 			return "Statusline for inactive windows"
@@ -83,25 +89,18 @@ return {
 }
 ```
 
-There's one more fact about statusline `{item}` options we should note from the
-help docs:
-
-> When the option starts with "%!" then it is used as an expression,
-> evaluated and the result is used as the option value.  Example: <br/>
-> `set statusline=%!MyStatusLine()`
-
-We can use this, along with `v:lua`, to call our Lua function:
+We can then set our statusline to call `render()` like so:
 
 ``` lua
 -- nvim/init.lua
 
-vim.opt.statusline = "%!v:lua.require'statusline'.render()"
+vim.opt.statusline = "%{%v:lua.require'statusline'.render()%}"
 ```
 
-With this setup we can now insert arbitrary components into our statusline by
-including them in `render()`. You might notice that I also snuck in some
-special behaviour for lines in non-focussed windows - you don't have to keep
-this, but all the other kids are doing it.
+With this setup we can now easily insert arbitrary components into our
+statusline. You might notice that I also snuck in some special behaviour for
+lines in non-focussed windows - you don't have to keep this, but all the other
+kids are doing it.
 
 Our statusline now looks like this:
 
@@ -225,7 +224,7 @@ We can then drop this component into our `render()` function like so:
 return {
 	render = function()
 		local active_win = vim.fn.win_getid()
-		local status_win = vim.g.statusline_winid
+		local status_win = tonumber(vim.g.actual_curwin)
 
 		if status_win ~= active_win then
 			return "Statusline for inactive windows"
@@ -250,28 +249,13 @@ This gets us something like this:
 
 ## Some gotchas
 
-**Gotcha: using buffer numbers**
-
-If you display buffer-specific information in your statusline, use the following
-code to get the buffer number:
-
-``` lua
-local statusline_bufnr = function()
-	return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
-end
-```
-
-E.g. `vim.api.nvim_buf_get_name(0)` will always get the name for the buffer
-your cursor is in, but `vim.api.nvim_buf_get_name(statusline_bufnr())` will
-give window-specific file names.
-
 **Gotcha: statusline refresh**
 
-If you use a component which updates in the background or with a slight
-delay, you may find that your statusline doeesn't update, e.g. until you
-start modifying text. In these cases you can use `:redrawstatus` to
-trigger an update. E.g. I found I needed to do this in an autocommand to
-make sure I got snappy updates from information provided by
+If you use a component which updates in the background or with a slight delay,
+you may find that your statusline doesn't update, e.g. until you start
+modifying text. In these cases you can use `:redrawstatus` to trigger an
+update. E.g. I found I needed to do this in an autocommand to make sure I got
+snappy updates from information provided by
 [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim):
 
 ``` lua
@@ -284,8 +268,8 @@ vim.api.nvim_create_autocmd("User", {
 
 ## Final notes
 
-This is hopefully enough for you to begin to lovingly craft your own
-statusline that does exactly what *you* need and nothing more. If you want
-some more inspiration you can see the actual [version I
-use](https://github.com/wurli/dotfiles/blob/main/.config/nvim/lua/statusline.lua)
+This is hopefully enough for you to begin to lovingly craft your own statusline
+that does exactly what *you* need and nothing more. If you want some more
+inspiration you can see the actual [version I
+use](https://github.com/wurli/dotfiles/blob/main/.config/nvim/lua/statusline.lua),
 which includes components for the current file, Git status, etc.
