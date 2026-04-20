@@ -198,16 +198,20 @@ a {
 
 .about {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  gap: 2rem;
+  align-items: flex-start;
+
+  .about-content {
+    flex: 1;
+    text-align: left;
+  }
 
   .profile-img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    margin-bottom: 1.5rem;
     object-fit: cover;
+    flex-shrink: 0;
   }
 
   h1 {
