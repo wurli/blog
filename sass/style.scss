@@ -133,9 +133,8 @@ a {
 
       // Bullet point before each nav item (hidden until active)
       &::before {
-        content: "\25CF ";
+        content: "> ";
         color: transparent;
-        margin-right: 0.25rem;
       }
 
       &:hover {
@@ -488,13 +487,6 @@ a {
   // Link Hover Expansion
   // -----------------------------------------------------------------------------
   // External links expand to show [text](url) on hover
-
-  a[href^="http"]::before,
-  a[href^="http"]::after {
-    opacity: 0;
-    transition: opacity 0.1s ease-in 0.3s;
-  }
-
   a[href^="http"]:hover {
     text-decoration: none;
   }
