@@ -80,14 +80,17 @@ a {
 
 .container {
   max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  // Distribute free space: 60% left, 40% right
+  --free-space: max(0px, calc(100vw - 1000px - 3rem));
+  margin-left: calc(1.5rem + var(--free-space) * 0.4);
+  margin-right: calc(1.5rem + var(--free-space) * 0.6);
   width: 100%;
 }
 
 .page-wrapper {
   display: flex;
   flex: 1;
+  gap: 2rem;
   padding-top: clamp(4rem, 20vh, 15rem);
 }
 
@@ -99,7 +102,6 @@ a {
 .sidebar {
   width: 180px;
   flex-shrink: 0;
-  padding-right: 2rem;
   position: sticky;
   top: clamp(4rem, 20vh, 15rem);
   height: fit-content;
@@ -206,6 +208,10 @@ a {
       &:hover {
         text-decoration: none;
       }
+    }
+
+    &:first-child {
+      margin-top: 0;
     }
   }
 
