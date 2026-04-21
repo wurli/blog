@@ -8,11 +8,10 @@
   <meta property="og:description" content="{% block og_description %}{{ config.description }}{% endblock %}">
   <meta property="og:url" content="{% block og_url %}{{ config.base_url }}{% endblock %}">
   {% if page.extra.image %}<meta property="og:image" content="{{ config.base_url }}/posts/{{ page.slug }}/{{ page.extra.image }}">{% endif %}
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon-v2.png">
   <meta name="theme-color" content="#002b36">
   <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
   <script src="{{ get_url(path='copy-code.js') }}" defer></script>
