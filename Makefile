@@ -11,4 +11,4 @@ serve:
 	zola serve -O
 
 clean:
-	rm -rf public/
+	rm -rf public/s
