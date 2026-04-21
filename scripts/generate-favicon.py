@@ -8,9 +8,11 @@
 """Generate favicons: 'J' in CommitMono on #002b36 background.
 
 Outputs:
-- static/favicon-16x16.png       (browser tab)
-- static/favicon-32x32.png       (browser tab)
-- static/apple-touch-icon-v2.png (180 — iOS home screen & Favorites tile)
+- static/favicon.ico             (16, 32 — browser tab; served at site root so
+                                  Chromium's automatic /favicon.ico probe doesn't 404)
+- static/favicon-16x16.png       (browser tab, high-DPI)
+- static/favicon-32x32.png       (browser tab, high-DPI)
+- static/apple-touch-icon.png    (180 — iOS home screen & Safari Favorites tile)
 - static/android-chrome-192x192.png  (Android/PWA)
 - static/android-chrome-512x512.png  (Android/PWA)
 """
@@ -42,7 +44,11 @@ def render(size: int, *, circle: bool) -> Image.Image:
     return img
 
 
-# Browser favicon PNGs (transparent circle, teal fill).
+# Browser favicon ICO (multi-size, transparent circle). Served at /favicon.ico
+# so Chromium browsers' automatic root probe hits a real file instead of 404.
+render(256, circle=True).save("static/favicon.ico", sizes=[(16, 16), (32, 32)])
+
+# Higher-resolution PNGs for browsers that prefer rel="icon" PNG links.
 render(32, circle=True).save("static/favicon-32x32.png")
 render(16, circle=True).save("static/favicon-16x16.png")
 
