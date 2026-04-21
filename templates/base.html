@@ -16,6 +16,20 @@
   <meta name="theme-color" content="#002b36">
   <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
   <script src="{{ get_url(path='copy-code.js') }}" defer></script>
+  <script type="speculationrules">
+    {
+      "prerender": [{
+        "where": {
+          "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/rss.xml" } },
+            { "not": { "selector_matches": "[data-no-instant]" } }
+          ]
+        },
+        "eagerness": "moderate"
+      }]
+    }
+  </script>
   {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
