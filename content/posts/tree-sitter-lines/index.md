@@ -18,7 +18,7 @@ simplicity is the number of lines in a treesitter grammer:
 | C++         | 1,603       | [tree-sitter-cpp](https://github.com/tree-sitter/tree-sitter-cpp/blob/master/grammar.js)          |
 | Rust        | 1,693       | [tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust/blob/master/grammar.js)        |
 
-> Accurate as at `2026-08-27`
+> Figures as of `2026-08-27`
 
 Lua and R are probably my 2 favourite languages. I have a love-hate
 relationship with Rust - and the hate tends to come down to issues caused by
