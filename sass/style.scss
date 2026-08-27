@@ -471,6 +471,12 @@ a {
     content: "](" attr(href) ")";
     opacity: 1;
   }
+
+  // Suppress expansion inside tables — it reflows column widths on hover.
+  td a[href^="http"]:hover::before,
+  td a[href^="http"]:hover::after {
+    content: none;
+  }
 }
 
 // =============================================================================
