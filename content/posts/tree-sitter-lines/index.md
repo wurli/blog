@@ -8,8 +8,8 @@ I like simple programming languages, and it turns out a nice proxy for
 simplicity is the number of lines in a treesitter grammer:
 
 | Lang        | Grammar LOC | Grammar                                                                                           |
-| ----------- | --          | --                                                                                                |
-| Clojure     | 528         | [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure/blob/master/grammar.js)       |
+| ----------- | --:         | --                                                                                                |
+| Clojure     | 528         | [tree-sitter-clojufix: remove empty postre](https://github.com/sogaiu/tree-sitter-clojure/blob/master/grammar.js)       |
 | Lua         | 634         | [tree-sitter-lua](https://github.com/tree-sitter-grammars/tree-sitter-lua/blob/main/grammar.js)   |
 | R           | 786         | [tree-sitter-r](https://github.com/r-lib/tree-sitter-r/blob/main/grammar.js)                      |
 | Zig         | 898         | [tree-sitter-zig](https://github.com/tree-sitter-grammars/tree-sitter-zig/blob/master/grammar.js) |
