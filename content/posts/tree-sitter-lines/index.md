@@ -5,7 +5,7 @@ template = "post.html"
 +++
 
 I like simple programming languages, and it turns out a nice proxy for
-simplicity is the number of lines in a treesitter grammer:
+simplicity is the number of lines in a treesitter grammar:
 
 | Lang        | Grammar LOC | `grammar.js`                                                                                      |
 | ----------- | --:         | --                                                                                                |
