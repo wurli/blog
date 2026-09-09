@@ -3,10 +3,20 @@ title = "Projects"
 template = "projects.html"
 +++
 
+## Command-line
+
+- ✈️ [Jet](https://github.com/wurli/jet) is a Jupyter kernel frontend for the
+  terminal, built with Rust. Jet is also a Lua library, which makes it
+  well-suited to its primary use-case as a backend for
+  [jet.nvim](https://github.com/wurli/jet.nvim).
+
 ## Neovim
 
 I maintain these for my own use, but I'm very happy if anyone else gets some
 mileage from them:
+
+- [jet.nvim](https://github.com/wurli/jet.nvim) - A Jupyter kernel supervisor
+  for Neovim, based on [Jet](https://github.com/wurli/jet).
 
 - [cobalt.nvim](https://github.com/wurli/cobalt.nvim) - A port of the classic
   blue theme from TextMate
