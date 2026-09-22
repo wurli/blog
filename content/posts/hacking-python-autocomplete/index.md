@@ -171,6 +171,10 @@ _CLOSINGS = [q + ")" * n for n in range(4) for q in ('"', "'")]
 
 @context_matcher()
 def _df_col_matcher(context):
+    # Classic pyspark (e.g. databricks-connect 15.x) exposes DataFrame at
+    # pyspark.sql.dataframe; Spark Connect (databricks-connect 16+) returns a
+    # separate pyspark.sql.connect.dataframe.DataFrame with no shared base, so
+    # check whichever modules are loaded.
     df_classes = tuple(
         m.DataFrame
         for name in ("pyspark.sql.dataframe", "pyspark.sql.connect.dataframe")
@@ -198,7 +202,7 @@ def _df_col_matcher(context):
     if tree is None:
         return {"completions": []}
 
-    def has_cursor(node):
+    def contains_cursor(node):
         return (
             (node.lineno, node.col_offset)
             <= cursor
@@ -207,7 +211,7 @@ def _df_col_matcher(context):
 
     # Innermost call first; walk outward until we find a DataFrame method.
     calls = sorted(
-        (n for n in ast.walk(tree) if isinstance(n, ast.Call) and has_cursor(n)),
+        (n for n in ast.walk(tree) if isinstance(n, ast.Call) and contains_cursor(n)),
         key=lambda n: (n.lineno, n.col_offset),
         reverse=True,
     )
@@ -216,9 +220,20 @@ def _df_col_matcher(context):
         func = call.func
         if not isinstance(func, ast.Attribute) or func.attr not in _COL_METHODS:
             continue
-        if not isinstance(func.value, ast.Name):
+        # Walk back through chained .method().method() calls to the root Name.
+        # If the root is anything else (e.g. a Call like spark.table("x")), we
+        # can't resolve it without executing code, so skip.
+        root = func.value
+        while True:
+            if isinstance(root, ast.Attribute):
+                root = root.value
+            elif isinstance(root, ast.Call) and isinstance(root.func, ast.Attribute):
+                root = root.func.value
+            else:
+                break
+        if not isinstance(root, ast.Name):
             continue
-        df = _ip.user_ns.get(func.value.id)
+        df = _ip.user_ns.get(root.id)
         if not isinstance(df, df_classes):
             continue
         return {
